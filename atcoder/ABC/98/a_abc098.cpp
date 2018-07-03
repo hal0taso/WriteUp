@@ -18,5 +18,17 @@ ull powmod(ull a, ull b, ull mod) {ull res = 1; for(; b; b >>= 1){if (b & 1) {re
 
 int main()
 {
-  
+    ll a, b, res;
+    cin >> a >> b;
+
+    res = a + b;
+    if (a - b > res){
+        res = a - b;
+    }
+
+    if (a * b > res) {
+        res = a * b;
+    }
+
+    cout << res << "\n";
 }
