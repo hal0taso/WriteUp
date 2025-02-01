@@ -24,6 +24,11 @@ int main() {
     REP(j, k) {
       long li = i - r[i];
       long ri = i - l[i];
+      if (ri < 0) {
+        continue
+      };
+      li = max(li, i);
+      dp[i] +=
     }
   }
 }

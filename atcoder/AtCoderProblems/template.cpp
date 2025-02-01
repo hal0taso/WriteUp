@@ -1,24 +1,52 @@
-#include <algorithm>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-
-#define FOR(i, a, b) for (int i = a; i < b; ++i)
-#define REP(i, n) for (int i = 0; i < n; ++i)
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
+#define FOR(i, a, b) for (int i = a; i < b; ++i)
+#define REP(i, n) for (int i = 0; i < n; ++i)
 
-ull powmod(ull a, ull b, ull mod) {
-  ull res = 1;
-  for (; b; b >>= 1) {
-    if (b & 1) {
-      res = res * a % mod;
-    }
-    a = a * a % mod;
+int main()
+{
+  int n, q;
+  int bi;
+  vector<int> a;
+  cin >> n;
+  a.resize(n);
+  for (int i = 0; i < n; i++)
+  {
+    cin >> a[i];
   }
-  return res;
+  cin >> q;
+
+  vector<pair<int, int>> p;
+  p.resize(q);
+  for (int i = 0; i < q; i++)
+  {
+    cin >> bi;
+    p[i] = make_pair(bi, i);
+  }
+  sort(a.begin(), a.end());
+  sort(p.begin(), p.end());
+  int idx = 0;
+  vector<pair<int, int>> ans(q);
+  for (int i = 0; i < q; i++)
+  {
+    bi = p[i].first;
+    int diff = abs(a[idx] - bi);
+    while (diff > abs(a[idx + 1] - bi))
+    {
+      diff = abs(a[idx + 1] - bi);
+      idx++;
+    }
+    ans[i] = make_pair(p[i].second, diff);
+  }
+  sort(ans.begin(), ans.end());
+  for (int i = 0; i < q; i++)
+  {
+    cout << ans[i].second << endl;
+  }
+
+  // cout << "YES" << endl;
+  return 0;
 }
